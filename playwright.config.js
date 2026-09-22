@@ -2,32 +2,31 @@
 const { devices } = require('@playwright/test');
 
 const config = {
-  testDir :   './tests',
-  testMatch: '**/*.spec.js',
-  retries: 0,
+    testDir: './tests',
+    testMatch: '**/*.spec.js',
+    retries: 0,
+    /* Maximum time one test can run for. */
+    timeout: 30 * 1000,
+
+    expect: {
+        timeout: 5000
+    },
 
 
-  /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
-  expect:{
+    reporter: 'html',
+    // Shared settings for all tests
 
-    timeout: 5000
+    
+    use: {
+        actionTimeout: 10 * 1000,
+        navigationTimeout: 30 * 1000,
+        // Use installed Google Chrome
+        channel: 'chrome',
+        headless: false,
+        screenshot: 'on',
+        trace: 'on'
+    }
+};
 
-  },
-
-  reporter: 'html',
-
-  // Shared setting for all the project here
-  use: {
-
-    actionTimeout: 10 * 1000,
-    navigationTimeout: 30 * 1000,
-
-
-    browserName: 'chromium',
-    headless: false,
-    screenshot: 'on',
-    trace: 'on', //off,on
-  }
-}
-
+// VERY IMPORTANT
+module.exports = config;
